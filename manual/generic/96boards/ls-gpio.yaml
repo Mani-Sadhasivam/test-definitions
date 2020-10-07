@@ -1,0 +1,25 @@
+metadata:
+    name: ls-gpio
+    format: "Manual Test Definition 1.0"
+    description: "Test if GPIOs on the Low Speed header works on 96Boards"
+    maintainer:
+        - manivannan.sadhasivam@linaro.org
+    os:
+        - debian
+    scope:
+        - functional
+    devices:
+        - qrb5165-rb5
+    environment:
+        - manual-test
+
+run:
+    steps:
+        - Boot the board successfuly to console.
+        - Install libgpiod along with its userspace tools.
+        - Toggle the GPIOs {A-L} on the low speed header using gpioset utility.
+        - Connect 1.8v/GND sources to the GPIOs {A-L} and capture the polarity using gpioget utility
+
+    expected:
+        - The polarity of the GPIOs will change as per the value specified in gpioset. 1 = HIGH, 0 = LOW
+        - The captured polarity value should match the voltage level applied to the GPIOs.
